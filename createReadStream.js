@@ -52,9 +52,10 @@ class  createReadStream extends event {
       }else{
         if(bytesRead){
           this.post +=bytesRead
-        
+          
           this.emit('data',buffer.slice(0,bytesRead))
           // console.log(this.buffer.slice(0,bytesRead).toString())
+          this.checkLastData()
           this.read()
         }else{
           this.last()
@@ -64,6 +65,14 @@ class  createReadStream extends event {
       }
       
     })
+    
+  }
+  checkLastData(){
+    let tem = this.end -  this.post
+    if(parseInt(tem/this.highWaterMark) == 0 && tem != this.highWaterMark){
+      // 最后一次调用
+      this.highWaterMark = tem
+    }
     
   }
   last(){

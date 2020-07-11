@@ -9,7 +9,7 @@ const stream = new createReadStream('./self.js',{
   autoClose:true,
   emitClose:false,
   start:0,
-  end:10,
+  end:15,
   highWaterMark:3,
   fs:null
 })
