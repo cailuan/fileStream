@@ -41,7 +41,7 @@ class  createReadStream extends event {
     // console.log(this,'read')
     if(typeof this.fd != 'number' ){
       this.once('open',this.read.bind(this))
-      // this.once('open',this.read)
+      this.once('open',()=>this.read())
       return 
     }
     let buffer =  Buffer.alloc(this.highWaterMark)
